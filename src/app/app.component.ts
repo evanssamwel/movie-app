@@ -1,10 +1,11 @@
-// app.component.ts
-
 import { Component } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClientModule, HttpClient } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
 
 @Component({
     selector: 'app-root',
+    standalone: true,  // Mark it as standalone
+    imports: [HttpClientModule, FormsModule],  // Import required modules
     templateUrl: './app.component.html',
     styleUrls: ['./app.component.css']
 })
