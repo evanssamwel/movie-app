@@ -4,8 +4,8 @@ import { FormsModule } from '@angular/forms';
 
 @Component({
     selector: 'app-root',
-    standalone: true,  // Mark it as standalone
-    imports: [HttpClientModule, FormsModule],  // Import required modules
+    standalone: true,
+    imports: [HttpClientModule, FormsModule],  // Required for API & ngModel
     templateUrl: './app.component.html',
     styleUrls: ['./app.component.css']
 })
@@ -17,11 +17,12 @@ export class AppComponent {
     private API_URL = 'https://omdbapi.com?apikey=fe2f6c44';
 
     constructor(private http: HttpClient) {
-        this.searchMovies('SpiderMan');
+        this.searchMovies('SpiderMan');  // Load default movies
     }
 
     searchMovies(title: string): void {
         this.http.get<any>(`${this.API_URL}&s=${title}`).subscribe(response => {
+            console.log("API Response:", response);  // Debugging
             this.movies = response.Search || [];
         });
     }

@@ -1,30 +1,28 @@
-<!--app.component.html-->
-
 <div class="app">
-  <h1>GeeksforGeeks</h1>
+  <h1>Movies</h1>
   <h3>Movie Application using Angular</h3>
 
   <div class="search">
       <input type="text" placeholder="Search for Movies" [(ngModel)]="searchTerm"
              (keyup.enter)="onSearch()" />
-      <img src="
-        https://media.geeksforgeeks.org/wp-content/uploads/20230626112934/search.png"
+      <img src="https://media.geeksforgeeks.org/wp-content/uploads/20230626112934/search.png"
            alt="search icon"
-          (click)="onSearch()" />
+           (click)="onSearch()" />
   </div>
 
   <div *ngIf="movies.length > 0; else noMovies" class="container">
       <div *ngFor="let movie of movies" class="movie">
           <div>
-              <p>{{ movie.Title }}</p>
+              <p>{{ movie.Title || 'No Title' }}</p>
           </div>
           <div>
-              <img [src]="movie.Poster !== 'N/A' ? movie.Poster : 
-                          'https://via.placeholder.com/400'" [alt]="movie.Title" />
+              <img [src]="movie.Poster && movie.Poster !== 'N/A' ? movie.Poster : 
+                          'https://via.placeholder.com/400'" 
+                   [alt]="movie.Title || 'No Title Available'" />
           </div>
           <div>
-              <span>{{ movie.Type }}</span>
-              <h3>{{ movie.Title }}</h3>
+              <span>{{ movie.Type || 'Unknown' }}</span>
+              <h3>{{ movie.Title || 'No Title' }}</h3>
           </div>
       </div>
   </div>
